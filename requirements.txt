@@ -1,0 +1,6 @@
+Flask==2.0.3
+SQLAlchemy==2.0.19
+Flask-Migrate==4.0.4
+scapy==2.6.0
+python-dotenv==1.0.0
+requests==2.31.0
