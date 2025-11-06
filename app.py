@@ -1,4 +1,3 @@
-# backend/app.py
 from flask import Flask, jsonify, request, abort
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -7,7 +6,7 @@ from datetime import datetime
 import os
 
 DB_URL = os.environ.get("DATABASE_URL", "sqlite:///netvision.db")
-API_TOKEN = os.environ.get("NETVISION_API_TOKEN", "")  # read token from env
+API_TOKEN = os.environ.get("NETVISION_API_TOKEN", "")  
 
 engine = create_engine(DB_URL, echo=False, future=True)
 Session = sessionmaker(bind=engine)
@@ -34,11 +33,11 @@ def list_devices():
 def require_token():
     if API_TOKEN:
         token = None
-        # first check Authorization header Bearer
+        
         auth = request.headers.get("Authorization", "")
         if auth.startswith("Bearer "):
             token = auth.split(" ", 1)[1].strip()
-        # fallback: custom header X-API-Token
+
         if not token:
             token = request.headers.get("X-API-Token", "")
         if token != API_TOKEN:
@@ -46,7 +45,7 @@ def require_token():
 
 @app.route("/api/device", methods=["POST"])
 def add_device():
-    # require token for POST
+    
     require_token()
 
     payload = request.json or {}
