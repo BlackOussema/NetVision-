@@ -1,0 +1,6 @@
+# NetVision Dependencies
+Flask>=2.0.0
+Flask-CORS>=3.0.0
+SQLAlchemy>=1.4.0
+requests>=2.28.0
+scapy>=2.5.0
